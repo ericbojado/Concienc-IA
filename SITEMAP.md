@@ -22,6 +22,6 @@
 Para fomentar el **pensamiento crítico**, la navegación sigue un camino de aprendizaje lógico y no solo de consumo de contenido:
 
 1. **Concientización:** El usuario entra a la **Home** y entiende la importancia y urgencia de la IA ética.
-2. **Educación:** Navega a **Cursos** y elige un tema de interés.
+2. **Educación:** Navega a **Cursos** y elige un tema de interésgit add SITEMAP.md.
 3. **Reflexión:** Después de ver la clase, el sistema sugiere un artículo relacionado en el **Vlog** para profundizar en el debate ético.
 4. **Empoderamiento:** Finalmente, el usuario descarga una guía práctica en **Recursos** para aplicar lo aprendido en su vida diaria.
