@@ -1,6 +1,6 @@
 # Diseño de Base de Datos
 
-> Este documento detalla la estructura lógica de la base de datos para la plataforma. Se utilizará PostgreSQL (vía Supabase) para garantizar escalabilidad yr obustez.
+> Este documento detalla la estructura lógica de la base de datos para la plataforma. Se utilizará PostgreSQL (vía Supabase) para garantizar escalabilidad y robustez.
 
 ## 1. Tabla: `cursos` (Biblioteca de Aprendizaje)
 Almacena la información de las clases en video y material educativo.
