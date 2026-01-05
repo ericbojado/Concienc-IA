@@ -11,12 +11,12 @@ Crear conciencia y educar a la comunidad mediante recursos accesibles (vlog y cu
 - **Backend:** Supabase (Autenticación y Base de Datos)
 - **Control de Versiones:** GitHub
 
-## 📂 Estructura prevista
+## Estructura prevista
 - `/vlog`: Artículos y reflexiones sobre el impacto de la IA.
 - `/cursos`: Clases prácticas sobre herramientas y ética.
 - `/recursos`: Guías para el uso responsable.
 
-## 🛠️ Instalación
+## Instalación
 *Este proyecto está en fase de planeación inicial.*
 
 ---
