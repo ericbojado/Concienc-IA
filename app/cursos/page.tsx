@@ -1,59 +1,61 @@
-export default function CursosPage() {
-  const cursos = [
-    {
-      titulo: "Fundamentos de IA Responsable",
-      nivel: "Básico",
-      duracion: "45 min",
-      descripcion: "Aprende los conceptos básicos de la IA y por qué la ética es fundamental en su desarrollo.",
-      imagen: "🛡️"
-    },
-    {
-      titulo: "Detección de Sesgos y Prejuicios",
-      nivel: "Intermedio",
-      duracion: "60 min",
-      descripcion: "Técnicas prácticas para identificar cuándo una IA está entregando resultados sesgados.",
-      imagen: "⚖️"
-    },
-    {
-      titulo: "Privacidad de Datos en la Era Digital",
-      nivel: "Básico",
-      duracion: "30 min",
-      descripcion: "Guía para proteger tu información personal al usar herramientas de IA generativa.",
-      imagen: "🔒"
-    }
-  ];
+import { supabase } from '@/lib/supabase';
+
+export default async function CursosPage() {
+  const { data: cursos, error } = await supabase
+    .from('cursos')
+    .select('*')
+    .order('creado_en', { ascending: false });
+
+  if (error) {
+    return <div className="pt-32 text-center text-red-500 font-medium">Error al conectar con la academia.</div>;
+  }
 
   return (
     <main className="pt-32 pb-24 px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="text-center md:text-left border-b border-gray-200 pb-10">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          Academia <span className="text-blue-600">Concienc-IA</span>
+      <header className="max-w-2xl border-b border-gray-100 pb-10">
+        <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">Educación Ética</span>
+        <h1 className="mt-4 text-4xl font-extrabold text-gray-900 sm:text-5xl">
+          Academia <span className="text-blue-600 underline decoration-blue-200">Concienc-IA</span>
         </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Cursos gratuitos para desarrollar tu pensamiento crítico y habilidades digitales.
+        <p className="mt-6 text-lg text-gray-600 leading-8">
+          Programas diseñados para estudiantes que buscan liderar el futuro tecnológico con responsabilidad y pensamiento crítico.
         </p>
-      </div>
+      </header>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {cursos.map((curso, index) => (
-          <div key={index} className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex h-48 items-center justify-center bg-blue-50 text-6xl">
-              {curso.imagen}
+      <div className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {cursos?.map((curso) => (
+          <div key={curso.id} className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            {/* Cabecera de la tarjeta con gradiente */}
+            <div className="flex h-44 items-center justify-center bg-gradient-to-br from-blue-500 to-blue-700 text-6xl shadow-inner group-hover:scale-105 transition-transform">
+              {curso.nivel === 'Básico' ? '🛡️' : curso.nivel === 'Intermedio' ? '⚖️' : '🔒'}
             </div>
-            <div className="flex flex-1 flex-col p-6">
-              <div className="flex items-center gap-x-2">
-                <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+
+            <div className="flex flex-1 flex-col p-8">
+              <div className="flex items-center justify-between">
+                <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${
+                  curso.nivel === 'Básico' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'
+                }`}>
                   {curso.nivel}
                 </span>
-                <span className="text-xs text-gray-500">{curso.duracion}</span>
+                <span className="text-xs font-semibold text-gray-400 flex items-center gap-1">
+                  ⏱️ {curso.duracion} min
+                </span>
               </div>
-              <h3 className="mt-4 text-xl font-bold text-gray-900">{curso.titulo}</h3>
-              <p className="mt-3 text-sm text-gray-600 line-clamp-3">
+
+              <h3 className="mt-5 text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                {curso.titulo}
+              </h3>
+              
+              <p className="mt-3 text-sm text-gray-500 leading-relaxed line-clamp-3">
                 {curso.descripcion}
               </p>
-              <div className="mt-auto pt-6">
-                <button className="w-full rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
-                  Empezar ahora
+
+              <div className="mt-8 flex items-center justify-between border-t border-gray-50 pt-6">
+                <span className="text-xs font-medium text-gray-400 italic">
+                  Por {curso.instructor || 'Eric Bojado'}
+                </span>
+                <button className="rounded-lg bg-gray-900 px-4 py-2 text-xs font-bold text-white hover:bg-blue-600 transition-colors">
+                  Ver Detalles
                 </button>
               </div>
             </div>
