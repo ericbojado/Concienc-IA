@@ -9,6 +9,9 @@ const Footer = () => {
           <Link href="https://github.com/ericbojado/Concienc-IA" className="text-gray-400 hover:text-blue-600 transition-colors">
             GitHub
           </Link>
+          <Link href="https://www.instagram.com/proyecto_concienc_ia?igsh=NHRlMzRuMGYzd2Ju" className="text-gray-400 hover:text-blue-600 transition-colors">
+            Instagram
+          </Link>
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
           <p className="text-center text-xs leading-5 text-gray-500">

@@ -33,7 +33,7 @@ export default function Home() {
             Explorar Cursos
           </Link>
           <Link href="/vlog" className="text-sm font-bold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
-            Leer el Vlog <span aria-hidden="true">→</span>
+            Leer el Blog <span aria-hidden="true">→</span>
           </Link>
         </div>
       </section>

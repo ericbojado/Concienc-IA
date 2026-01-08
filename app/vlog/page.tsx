@@ -3,10 +3,10 @@ import { supabase } from '@/lib/supabase';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Vlog de Concienc-IA | Reflexiones sobre Ética e IA",
+  title: "Blog de Concienc-IA | Reflexiones sobre Ética e IA",
   description: "Explora artículos, noticias y guías prácticas sobre el impacto social de la inteligencia artificial y la importancia de la alfabetización digital.",
   openGraph: {
-    title: "Vlog de Concienc-IA",
+    title: "Blog de Concienc-IA",
     description: "Reflexiones sobre el uso responsable y ético de la tecnología.",
     images: [
       {
@@ -35,7 +35,7 @@ export default async function VlogPage() {
       {/* Encabezado:*/}
       <header className="mb-12 text-left">
         <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-          Vlog de <span className="text-blue-600">Concienc-IA</span>
+          Blog de <span className="text-blue-600">Concienc-IA</span>
         </h1>
         <p className="mt-4 text-lg text-gray-600">
           Reflexiones, noticias y artículos para un uso responsable de la tecnología.
