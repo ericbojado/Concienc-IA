@@ -6,14 +6,8 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex justify-center space-x-6 md:order-2">
           {/* Aquí puedes poner tus redes sociales o links de contacto */}
-          <Link href="https://github.com" className="text-gray-400 hover:text-blue-600 transition-colors">
+          <Link href="https://github.com/ericbojado/Concienc-IA" className="text-gray-400 hover:text-blue-600 transition-colors">
             GitHub
-          </Link>
-          <Link href="https://linkedin.com" className="text-gray-400 hover:text-blue-600 transition-colors">
-            LinkedIn
-          </Link>
-          <Link href="mailto:correo@ejemplo.com" className="text-gray-400 hover:text-blue-600 transition-colors">
-            Contacto
           </Link>
         </div>
         <div className="mt-8 md:order-1 md:mt-0">

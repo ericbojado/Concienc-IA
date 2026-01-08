@@ -1,4 +1,11 @@
+import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Academia Digital | Concienc-IA",
+  description: "Explora nuestra cursos gratuita sobre alfabetización digital y uso responsable de la IA.",
+};
 
 export default async function CursosPage() {
   const { data: cursos, error } = await supabase
@@ -7,62 +14,65 @@ export default async function CursosPage() {
     .order('creado_en', { ascending: false });
 
   if (error) {
-    return <div className="pt-32 text-center text-red-500 font-medium">Error al conectar con la academia.</div>;
+    console.error("Error cargando cursos:", error);
   }
 
   return (
-    <main className="pt-32 pb-24 px-6 lg:px-8 max-w-7xl mx-auto">
-      <header className="max-w-2xl border-b border-gray-100 pb-10">
-        <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">Educación Ética</span>
-        <h1 className="mt-4 text-4xl font-extrabold text-gray-900 sm:text-5xl">
+    <main className="pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+      <header className="mb-12 text-left">
+        <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
           Academia <span className="text-blue-600">Concienc-IA</span>
         </h1>
+        <p className="mt-4 text-lg text-gray-600">
+          Cursos gratuitos para desarrollar tus habilidades digitales con ética y responsabilidad.
+        </p>
+        <hr className="mt-8 border-gray-100" />
       </header>
 
-      <div className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-        {cursos?.map((curso) => (
-          <div key={curso.id} className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            
-            {/* AQUÍ VA EL CÓDIGO DEL PUNTO 3: CABECERA CON IMAGEN REAL */}
-            <div className="relative h-52 w-full overflow-hidden bg-gray-200">
-              {curso.url_miniatura ? (
-                <img 
-                  src={curso.url_miniatura} 
-                  alt={curso.titulo}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-500 to-blue-700 text-6xl">
-                  {curso.nivel === 'Básico' ? '🛡️' : curso.nivel === 'Intermedio' ? '⚖️' : '🔒'}
-                </div>
-              )}
-              
-              <div className="absolute top-4 left-4">
-                <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider shadow-lg ${
-                  curso.nivel === 'Básico' ? 'bg-green-500 text-white' : 'bg-orange-500 text-white'
-                }`}>
-                  {curso.nivel}
+      {!cursos || cursos.length === 0 ? (
+        <div className="py-20 text-center">
+          <p className="text-gray-500 italic text-lg">Próximamente nuevos cursos disponibles.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {cursos.map((curso) => (
+            <article 
+              key={curso.id} 
+              className="flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+            >
+              <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                {curso.url_miniatura ? (
+                  <img src={curso.url_miniatura} alt={curso.titulo} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-4xl">🎓</div>
+                )}
+                <span className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  {curso.nivel || 'Básico'}
                 </span>
               </div>
-            </div>
 
-            <div className="flex flex-1 flex-col p-8">
-              <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                {curso.titulo}
-              </h3>
-              <p className="mt-3 text-sm text-gray-500 line-clamp-3">
-                {curso.descripcion}
-              </p>
-              <div className="mt-8 flex items-center justify-between border-t border-gray-50 pt-6">
-                <span className="text-xs font-medium text-gray-400">⏱️ {curso.duracion} min</span>
-                <button className="rounded-lg bg-gray-900 px-4 py-2 text-xs font-bold text-white hover:bg-blue-600 transition-colors">
-                  Ver Detalles
-                </button>
+              <div className="p-8 flex flex-col flex-grow text-left">
+                <h2 className="text-xl font-bold text-gray-900 mb-4 line-clamp-2">
+                  {curso.titulo}
+                </h2>
+                <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow line-clamp-3">
+                  {curso.descripcion}
+                </p>
+                
+                {/* Footer de la tarjeta: Solo el botón alineado a la derecha */}
+                <div className="flex justify-end mt-auto pt-6 border-t border-gray-50">
+                  <Link 
+                    href={`/cursos/${curso.slug}`}
+                    className="inline-flex items-center px-6 py-2.5 bg-blue-50 text-blue-600 text-sm font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-200 shadow-sm"
+                  >
+                    Ver curso
+                  </Link>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      )}
     </main>
   );
 }

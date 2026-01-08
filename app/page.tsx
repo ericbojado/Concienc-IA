@@ -1,25 +1,42 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
-    <main className="relative isolate px-6 pt-24 lg:px-8">
-      <div className="mx-auto max-w-2xl py-20 sm:py-48 lg:py-56">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Domina la IA con <span className="text-blue-600">Pensamiento Crítico</span>
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            En <strong>Concienc-IA</strong> te enseñamos a usar herramientas digitales de forma ética y responsable. 
-            No dejes que el algoritmo piense por ti.
+    <main className="flex flex-col items-center justify-start min-h-screen pt-32"> {/* 1. justify-start para subir el contenido */}
+      <section className="relative px-6 lg:px-8 max-w-5xl mx-auto text-center"> {/* 2. max-w-5xl para dar más espacio al texto */}
+        
+        {/* Título con control de saltos de línea */}
+        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-7xl lg:text-8xl leading-[1.1]">
+          <span className="block md:inline">Domina la IA con</span> {/* Forzamos que esto vaya junto */}
+          <br className="hidden md:block" /> 
+          <span className="text-blue-600 block md:inline mt-2 md:mt-0">
+            Pensamiento Crítico
+          </span>
+        </h1>
+
+        {/* Descripción con ancho controlado */}
+        <p className="mt-10 text-lg md:text-xl leading-8 text-gray-600 max-w-3xl mx-auto">
+          En <strong className="text-gray-900">Concienc-IA</strong> te enseñamos a usar herramientas digitales de forma ética, responsable y profesional, 
+          desarrollando un criterio propio para discernir entre la información veraz y la desinformación.
+        </p>
+
+        {/* Frase destacada */}
+        <div className="mt-12 py-6 border-y border-gray-100">
+          <p className="text-xl md:text-2xl font-medium italic text-gray-900">
+            "IA para <span className="text-blue-600 font-bold">aprender más</span>, no para pensar menos."
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a href="/cursos" className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500">
-              Explorar Cursos
-            </a>
-            <a href="/vlog" className="text-sm font-semibold leading-6 text-gray-900">
-              Leer el Vlog <span aria-hidden="true">→</span>
-            </a>
-          </div>
         </div>
-      </div>
+
+        {/* Botones de Acción */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
+          <Link href="/cursos" className="w-full sm:w-auto rounded-xl bg-blue-600 px-8 py-4 text-sm font-bold text-white shadow-lg hover:bg-blue-500 transition-all hover:-translate-y-1">
+            Explorar Cursos
+          </Link>
+          <Link href="/vlog" className="text-sm font-bold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
+            Leer el Vlog <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

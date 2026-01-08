@@ -2,6 +2,24 @@ import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Metadata } from 'next';
+import Link from 'next/link';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  
+  // Buscamos el artículo para obtener su título real
+  const { data: articulo } = await supabase
+    .from('articulos')
+    .select('titulo, resumen')
+    .eq('slug', slug)
+    .single();
+
+  return {
+    title: articulo?.titulo || "Artículo de IA",
+    description: articulo?.resumen || "Reflexiones sobre el impacto social de la inteligencia artificial.",
+  };
+}
 
 export default async function ArticuloPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -60,9 +78,12 @@ export default async function ArticuloPage({ params }: { params: Promise<{ slug:
         </div>
         
         <div className="mt-20 pt-8 border-t border-gray-100">
-          <a href="/vlog" className="text-blue-600 font-semibold hover:underline flex items-center gap-2">
-            ← Volver a todos los artículos
-          </a>
+          <Link 
+          href={`/vlog`}
+          className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-600 text-sm font-bold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-200 shadow-sm"
+          >
+            Volver a todos los artículos
+          </Link>
         </div>
       </article>
     </main>

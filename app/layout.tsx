@@ -10,8 +10,14 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Concienc-IA",
-  description: "Uso responsable de la IA",
+  title: {
+    default: "Concienc-IA | Ética y Responsabilidad en la Inteligencia Artificial",
+    template: "%s | Concienc-IA"
+  },
+  description: "Plataforma educativa para promover el uso ético y crítico de la Inteligencia Artificial.",
+  keywords: ["IA ética", "Eric Bojado", "Colima", "Educación tecnológica", "Líderes del Mañana", "Inteligencia Artificial"],
+  authors: [{ name: "Eric Bojado Flores" }],
+  creator: "Eric Bojado Flores",
 };
 
 export default function RootLayout({
