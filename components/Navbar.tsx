@@ -37,8 +37,8 @@ const Navbar = () => {
           {/* Menú Desktop (Se oculta en móvil con 'hidden md:flex') */}
           <div className="hidden md:flex space-x-8">
             <Link href="/" className={linkStyles('/')}>Inicio</Link>
-            <Link href="/vlog" className={linkStyles('/vlog')}>Blog</Link>
             <Link href="/cursos" className={linkStyles('/cursos')}>Cursos</Link>
+            <Link href="/vlog" className={linkStyles('/vlog')}>Blog</Link>
             <Link href="/nosotros" className={linkStyles('/nosotros')}>Nosotros</Link>
           </div>
 
@@ -63,8 +63,8 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden pb-6 space-y-4 flex flex-col items-center border-t border-gray-50 pt-4 bg-white">
             <Link href="/" onClick={() => setIsOpen(false)} className={linkStyles('/')}>Inicio</Link>
-            <Link href="/vlog" onClick={() => setIsOpen(false)} className={linkStyles('/vlog')}>Blog</Link>
             <Link href="/cursos" onClick={() => setIsOpen(false)} className={linkStyles('/cursos')}>Cursos</Link>
+            <Link href="/vlog" onClick={() => setIsOpen(false)} className={linkStyles('/vlog')}>Blog</Link>
             <Link href="/nosotros" onClick={() => setIsOpen(false)} className={linkStyles('/nosotros')}>Nosotros</Link>
           </div>
         )}

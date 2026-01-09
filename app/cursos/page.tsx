@@ -87,10 +87,11 @@ export default async function CursosPage() {
                 {/* Footer de la tarjeta: Solo el botón alineado a la derecha */}
                 <div className="flex justify-end mt-auto pt-6 border-t border-gray-50">
                   <Link 
-                    href={`/cursos/${curso.slug}`}
+                    //href={`/cursos/${curso.slug}`}
+                    href={`/cursos`}
                     className="inline-flex items-center px-6 py-2.5 bg-blue-50 text-blue-600 text-sm font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-200 shadow-sm"
                   >
-                    Ver curso
+                    Ver curso (Próximamente)
                   </Link>
                 </div>
               </div>
