@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function CursosPage() {
   const { data: cursos, error } = await supabase
     .from('cursos')
-    .select('*')
+    .select('*, modulos(count)')
     .order('creado_en', { ascending: false });
 
   if (error) {
@@ -59,6 +59,31 @@ export default async function CursosPage() {
                   {curso.descripcion}
                 </p>
                 
+                <div className="flex items-center gap-4 text-xs font-medium text-gray-500 mb-6">
+  
+                  {/* Icono Reloj + Duración */}
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>{curso.duracion} min</span>
+                  </div>
+
+                  {/* Separador (punto) */}
+                  <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+
+                  {/* Icono Libro + Cantidad de Módulos */}
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    {/* Accedemos al conteo. Supabase lo devuelve como un array de objetos */}
+                    <span>
+                      {curso.modulos && curso.modulos[0] ? curso.modulos[0].count : 0} Lecciones
+                    </span>
+                  </div>
+                </div>
+
                 {/* Footer de la tarjeta: Solo el botón alineado a la derecha */}
                 <div className="flex justify-end mt-auto pt-6 border-t border-gray-50">
                   <Link 
