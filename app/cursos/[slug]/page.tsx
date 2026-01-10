@@ -55,8 +55,8 @@ export default function CursoDetalle({ params }: { params: Promise<{ slug: strin
 
   return (
     <div className="min-h-screen bg-white font-[Arial]">
-      {/* Barra de Progreso Superior (Fija) */}
-      <div className="sticky top-16 bg-white/95 backdrop-blur-sm z-40 border-b border-gray-100">
+      {/* Barra de Progreso Superior */}
+      <div className="sticky top-16 bg-white/95 backdrop-blur-sm z-40 border-b border-gray-100 print:hidden">
         <div className="max-w-3xl mx-auto px-6 py-4">
           <div className="flex justify-between mb-1 text-xs font-bold text-gray-500 uppercase tracking-widest">
             <span>Progreso del curso</span>
@@ -71,8 +71,8 @@ export default function CursoDetalle({ params }: { params: Promise<{ slug: strin
         </div>
       </div>
 
-      <main className="max-w-3xl mx-auto px-6 pt-32 pb-12">
-        {/* ENCABEZADO ESTILO ARTÍCULO */}
+      <main className="max-w-3xl mx-auto px-6 pt-32 pb-12 print:hidden">
+        {/* Encabezado */}
         <header className="mb-10">
           <p className="text-[#2563eb] font-bold text-xs tracking-[0.2em] uppercase mb-4">
              {/* Detectamos si es intro o módulo numerado */}
@@ -105,7 +105,7 @@ export default function CursoDetalle({ params }: { params: Promise<{ slug: strin
               // Párrafos normales
               p: ({node, ...props}) => <p className="mb-6 leading-8" {...props} />,
               
-              // Listas (Bullets) como en image_c855a3.png
+              // Listas (Bullets)
               ul: ({node, ...props}) => <ul className="list-disc pl-6 space-y-3 mb-6 marker:text-[#2563eb]" {...props} />,
               li: ({node, ...props}) => <li className="pl-2" {...props} />,
               
@@ -187,31 +187,31 @@ export default function CursoDetalle({ params }: { params: Promise<{ slug: strin
         </div>
       </main>
 
-      {/* CERTIFICADO OCULTO (Para impresión) */}
-      <div className="hidden print:flex fixed inset-0 bg-white items-center justify-center p-0 z-[9999]">
+      {/* CERTIFICADO*/}
+      <div className="hidden print:flex fixed inset-0 bg-white items-center justify-center p-0 z-[9999] overflow-hidden">
         <div className="border-[10px] border-[#2563eb] p-20 w-full h-full flex flex-col justify-center items-center text-center">
-           {/* Logo o Marca */}
-           <div className="mb-10 text-[#2563eb] font-bold text-2xl tracking-widest uppercase">Concienc-IA</div>
-           
-           <h1 className="text-6xl font-bold text-[#111827] mb-6 font-serif">Certificado de Finalización</h1>
-           <p className="text-2xl text-gray-600 mb-12">Se otorga el presente reconocimiento a:</p>
-           
-           <div className="border-b-2 border-gray-900 w-2/3 mx-auto mb-4"></div>
-           <p className="text-sm text-gray-400 mb-12 uppercase tracking-widest">Nombre del Estudiante</p>
+            {/* Logo o Marca */}
+            <div className="mb-10 text-[#2563eb] font-bold text-2xl tracking-widest uppercase">Concienc-IA</div>
+            
+            <h1 className="text-6xl font-bold text-[#111827] mb-6 font-serif">Certificado de Finalización</h1>
+            <p className="text-2xl text-gray-600 mb-12">Se otorga el presente reconocimiento a:</p>
+            
+            <div className="border-b-2 border-gray-900 w-2/3 mx-auto mb-4"></div>
+            <p className="text-sm text-gray-400 mb-12 uppercase tracking-widest">Nombre del Estudiante</p>
 
-           <p className="text-xl text-gray-600">Por haber completado con éxito el curso:</p>
-           <h2 className="text-4xl font-bold text-[#2563eb] mt-4 mb-20">{curso.titulo}</h2>
-           
-           <div className="text-xs text-gray-400 mt-auto">
-             Validado de forma simbólica por la plataforma Concienc-IA
-           </div>
+            <p className="text-xl text-gray-600">Por haber completado con éxito el curso:</p>
+            <h2 className="text-4xl font-bold text-[#2563eb] mt-4 mb-20">{curso.titulo}</h2>
+            
+            <div className="text-xs text-gray-400 mt-auto">
+              Validado digitalmente de forma simbólica por la plataforma Concienc-IA
+            </div>
         </div>
       </div>
     </div>
   );
 }
 
-// Estilo del Prompt Box actualizado para encajar en el artículo
+// Estilo del Prompt Box
 function PromptBox({ children }: any) {
   const copy = () => {
     navigator.clipboard.writeText(String(children));
