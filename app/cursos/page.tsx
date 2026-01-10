@@ -90,7 +90,7 @@ export default async function CursosPage() {
                     href={`/cursos/${curso.slug}`}
                     className="inline-flex items-center px-6 py-2.5 bg-blue-50 text-blue-600 text-sm font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-200 shadow-sm"
                   >
-                    Ver curso (Próximamente)
+                    Ver curso
                   </Link>
                 </div>
               </div>
