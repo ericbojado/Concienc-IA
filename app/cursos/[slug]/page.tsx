@@ -2,6 +2,7 @@
 import { useState, useEffect, use } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { supabase } from '@/lib/supabase';
+import remarkGfm from 'remark-gfm';
 
 export default function CursoDetalle({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -94,6 +95,7 @@ export default function CursoDetalle({ params }: { params: Promise<{ slug: strin
         {/* CONTENIDO DEL CURSO (Estilizado como el artículo) */}
         <div className="text-[#4b5563] text-lg leading-relaxed space-y-8">
           <ReactMarkdown 
+            remarkPlugins={[remarkGfm]}
             components={{
               // Títulos dentro del contenido (H2, H3)
               h1: ({node, ...props}) => <h2 className="text-2xl font-bold text-[#111827] mt-10 mb-4" {...props} />,
@@ -119,7 +121,28 @@ export default function CursoDetalle({ params }: { params: Promise<{ slug: strin
               code: ({node, inline, className, children, ...props}: any) => {
                 if (inline) return <code className="bg-gray-100 text-[#2563eb] px-1 py-0.5 rounded font-mono text-sm">{children}</code>;
                 return <PromptBox>{children}</PromptBox>;
-              }
+              },
+
+              table: ({node, ...props}) => (
+                <div className="overflow-x-auto my-10 rounded-xl border border-gray-200 shadow-sm">
+                  <table className="w-full text-left border-collapse bg-white" {...props} />
+                </div>
+              ),
+              thead: ({node, ...props}) => (
+                <thead className="bg-gray-50 border-b border-gray-200" {...props} />
+              ),
+              th: ({node, ...props}) => (
+                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider" {...props} />
+              ),
+              tbody: ({node, ...props}) => (
+                <tbody className="divide-y divide-gray-100" {...props} />
+              ),
+              tr: ({node, ...props}) => (
+                <tr className="hover:bg-blue-50/30 transition-colors" {...props} />
+              ),
+              td: ({node, ...props}) => (
+                <td className="px-6 py-4 text-sm text-gray-600 leading-relaxed align-top" {...props} />
+              ),
             }}
           >
             {modulos[indiceActual].contenido}
